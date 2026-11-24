@@ -17,7 +17,7 @@ class AuditTrailService(BaseModuleService):
     OPERATION_TERM = "关联"
     LIST_FIELDS = [
         "条目编号", "操作对象", "操作类型", "操作者标识", "操作时间",
-        "变更摘要", "关联执行", "追溯标记",
+        "变更摘要", "关联执行", "追溯标记", "关联规则版本",
     ]
     REQUIRED_FIELDS = ["条目编号", "操作对象", "操作类型"]
     STATUS_ORDER = ["已记录", "待核查", "已核查", "已封存"]

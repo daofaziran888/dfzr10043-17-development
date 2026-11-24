@@ -4,6 +4,7 @@
 """
 from __future__ import annotations
 
+from copy import deepcopy
 from typing import Any
 
 from app.seed import SEED_ROWS
@@ -12,7 +13,7 @@ from app.seed import SEED_ROWS
 class Store:
     def __init__(self) -> None:
         self._tables: dict[str, list[dict[str, Any]]] = {
-            name: [dict(row) for row in rows] for name, rows in SEED_ROWS.items()
+            name: [deepcopy(row) for row in rows] for name, rows in SEED_ROWS.items()
         }
 
     def module_names(self) -> list[str]:
@@ -46,9 +47,12 @@ class Store:
         return {"cards": cards, "modules": modules}
 
     def reset(self) -> None:
-        """重置 store 为种子数据初始状态，用于测试隔离。"""
+        """重置 store 为种子数据初始状态，用于测试隔离。
+
+        深拷贝种子行，避免行内嵌套列表/字典（如回放复核输入）在多次重置间共享引用。
+        """
         self._tables = {
-            name: [dict(row) for row in rows] for name, rows in SEED_ROWS.items()
+            name: [deepcopy(row) for row in rows] for name, rows in SEED_ROWS.items()
         }
 
 

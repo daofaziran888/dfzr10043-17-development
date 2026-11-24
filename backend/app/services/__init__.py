@@ -15,6 +15,7 @@ from app.services.ocr_region import OcrRegionService
 from app.services.schedule_plan import SchedulePlanService
 from app.services.exception_rule import ExceptionRuleService
 from app.services.retry_policy import RetryPolicyService
+from app.services.rule_replay import RuleReplayService
 from app.services.capture_batch import CaptureBatchService
 from app.services.field_mapping import FieldMappingService
 from app.services.data_landing import DataLandingService
@@ -39,6 +40,7 @@ SERVICES: dict[str, BaseModuleService] = {
     "schedule_plan": SchedulePlanService(),
     "exception_rule": ExceptionRuleService(),
     "retry_policy": RetryPolicyService(),
+    "rule_replay_event": RuleReplayService(),
     "capture_batch": CaptureBatchService(),
     "field_mapping": FieldMappingService(),
     "data_landing": DataLandingService(),
